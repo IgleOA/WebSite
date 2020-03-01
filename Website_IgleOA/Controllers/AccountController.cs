@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using MDA_IgleOA.Models;
+using Website_IgleOA.Models;
 using System.Net;
 using System.Net.Mail;
 using BL;
 using ET;
 using System.Text;
 
-namespace MDA_IgleOA.Controllers
+namespace Website_IgleOA.Controllers
 {
     [Authorize]
     public class AccountController : Controller

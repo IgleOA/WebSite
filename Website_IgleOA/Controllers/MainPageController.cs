@@ -9,7 +9,7 @@ using System.Text;
 using System.Net;
 using System.Net.Mail;
 
-namespace MDA_IgleOA.Controllers
+namespace Website_IgleOA.Controllers
 {
     public class MainPageController : Controller
     {

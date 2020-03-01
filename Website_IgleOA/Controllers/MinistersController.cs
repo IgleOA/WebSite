@@ -4,7 +4,7 @@ using BL;
 using ET;
 using Microsoft.AspNet.Identity;
 
-namespace MDA_IgleOA.Controllers
+namespace Website_IgleOA.Controllers
 {
     public class MinistersController : Controller
     {

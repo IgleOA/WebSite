@@ -17,6 +17,9 @@ C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\Website_IgleOA\DB_MDA_CR_OA\
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.dacpac
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.dll
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.pdb
-C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.sqlprojAssemblyReference.cache
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\Model.xml
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\refactor.xml
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\postdeploy.sql
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\predeploy.sql
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.dll
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.pdb

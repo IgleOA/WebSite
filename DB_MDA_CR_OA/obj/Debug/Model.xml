@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="DB_MDA_CR_OA.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\JONATHAN\DROPBOX\NEWAPPS\MDA_IGLEOA\IGLEOA\MDA_IGLEOA\DB_MDA_CR_OA\OBJ\DEBUG\DB_MDA_CR_OA.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\JONATHAN\DROPBOX\NEWAPPS\IGLEOA\WEBSITE_IGLEOA\DB_MDA_CR_OA\OBJ\DEBUG\DB_MDA_CR_OA.DLL" />
 			<Metadata Name="AssemblyName" Value="DB_MDA_CR_OA" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>

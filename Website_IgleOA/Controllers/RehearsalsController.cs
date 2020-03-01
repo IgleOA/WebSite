@@ -8,7 +8,7 @@ using BL;
 using Microsoft.AspNet.Identity;
 using System.Globalization;
 
-namespace MDA_IgleOA.Controllers
+namespace Website_IgleOA.Controllers
 {
     public class RehearsalsController : Controller
     {

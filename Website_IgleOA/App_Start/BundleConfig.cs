@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MDA_IgleOA
+namespace Website_IgleOA
 {
     public class BundleConfig
     {

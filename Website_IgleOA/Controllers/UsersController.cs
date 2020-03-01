@@ -8,7 +8,7 @@ using ET;
 using Microsoft.AspNet.Identity;
 using System.Net.Mail;
 
-namespace MDA_IgleOA.Controllers
+namespace Website_IgleOA.Controllers
 {
     public class UsersController : Controller
     {

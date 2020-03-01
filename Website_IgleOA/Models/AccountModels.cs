@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using ET;
 
-namespace MDA_IgleOA.Models
+namespace Website_IgleOA.Models
 {
     public class LoginModel
     {
