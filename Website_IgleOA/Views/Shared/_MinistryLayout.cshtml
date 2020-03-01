@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>MDA Oasis Alajuela</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/assets/css")*@
+
+</head>
+
+<body>
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Header -->
+    <header id="header" class="alt">
+        <div class="logo"><a href="~/MinistryHome/Index">MDA - Area Ministerial</a></div>
+        <a href="#menu">Menu</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu" name="menu">
+        @Html.Partial("_LoginPartial")
+    </nav>
+
+
+    <!-- Two -->
+    <section id="two" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+                <p>Amamos al Espíritu Santo</p>
+                <h2>Oasis Alajuela</h2>
+            </header>
+        </div>
+    </section>
+
+    <!-- Three -->
+    <section id="three" class="wrapper style2" style="padding: 1rem;">
+        @RenderSection("featured", required: false)
+        <div class="container body-content" style="max-width: 100%;">
+            @RenderBody()
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <ul class="icons">
+                @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>*@
+                <li><a href="https://www.facebook.com/IGLEOA/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                @*<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>*@
+                <li><a href="@Url.Action("Contact", "MainPage", new { AppID = 1 })" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=50683102429" class="icon fa-whatsapp"><span class="label">WhatsApp</span></a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            Oasis Alajuela &copy; @DateTime.Now.Year - Ministerio de Artes
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/jquery.scrollex.min.js"></script>
+    <script src="~/assets/js/skel.min.js"></script>
+    <script src="~/assets/js/util.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ET.ProgramDetails>
+@{
+    Layout = null;
+}
+<style>
+    .grid-container {
+    display: grid;
+}
+
+    .grid-container--fill {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .grid-container--fit {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .grid-element {
+      /*background-color: deepPink;*/
+      padding: 20px;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+}
+</style>
+<script type="text/javascript">
+    function AddSong(id) {
+        var url = '@Url.Action("AddSong", "Programs", new { id = "PID" })';
+        url = url.replace("PID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+    }
+</script>
+<script type="text/javascript">
+    function OpenCharts(id) {
+        var url = '@Url.Action("MusicSheetsbySong", "MusicSheets", new { SongID = "song" })';
+        url = url.replace("song", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=1000,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<script type="text/javascript">
+    function CopyProgram(id) {
+        var url = '@Url.Action("CopyProgram", "Programs", new { id = "PID" })';
+        url = url.replace("PID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<script type="text/javascript">
+    function NotificationEmail(PID) {
+        var x = confirm("Esta seguro que quiere notificar que ya esta listo este programa???");
+        if (x) {
+            $.ajax({
+                url: '@Url.Action("NotificationEmail")',
+                data: { id: PID }
+            }).done(function () { alert('Hecho!!!'); location.reload(); });
+        }
+    }
+</script>
+<script type="text/javascript">
+    function OpenSongs(id) {
+        var url = '@Url.Action("Details", "Programs", new { id = "ProgramID" })';
+        url = url.replace("ProgramID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=1000,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<div class="grid-element">
+    <header class="align-center">
+        <p id="WeeklyProgramDate" style="margin: 0 !important">@ViewBag.PDate</p>
+        <h2 id="WeeklyProgramLabel" style="margin: 0 !important">@ViewBag.DayName</h2>
+        <h2 id="WeeklyProgramLabel">@ViewBag.PSchedule</h2>
+    </header>
+    <table class="table" id="WeeklyProgramTable">
+        <tr>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a id="BtnCharts" href="#" onclick="OpenCharts(@item.SongID)">@item.SongsData.SongName</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        @if (ViewBag.ND == null)
+        { }
+        else
+        {
+            <p id="NotificationLabel" style="margin: 0 !important;font-size: 12px; color: blueviolet !important;">Notificado al grupo el @ViewBag.ND</p>
+        }
+        @if (ViewBag.Status == false)
+        {
+            <p>
+                @if (ViewBag.WriteFlag == true)
+                {
+
+                <a id="BtnEditProgram" class="button small alt" href="#" title="Editar Programa" onclick="OpenSongs(@ViewBag.PID)"> E </a>
+                <a id="BtnNewSongbyProgram" class="button small alt" href="#" title="Agregar Canción" onclick="AddSong(@ViewBag.PID)"> + </a>
+                <a id="CopyProgramLink" class="button small alt" href="#" title="Copiar de otro Programa" onclick="CopyProgram(@ViewBag.PID)"> CP </a>
+                }
+                else
+                { }
+                @if (ViewBag.Rows > 0)
+                {
+                    if (ViewBag.ND == null)
+                    {
+                        <a id="BtnNotification" class="button small alt" href="#" title="Notificar" onclick="NotificationEmail(@ViewBag.PID)"> → </a>
+                    }
+                    else
+                    {
+                        <a id="BtnNotification" class="button small alt" href="#" title="Volver a notificar...." onclick="NotificationEmail(@ViewBag.PID)">→</a>
+                    }
+                }
+                else
+                { }
+                </p>
+        }
+        else
+        {
+                <p></p>
+        }
+    </div>
+</div>

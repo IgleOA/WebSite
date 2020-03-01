@@ -1,0 +1,48 @@
+﻿@model ET.Ministers
+
+@{
+    ViewBag.Title = "Agregar Ministro";
+    Layout = "~/Views/Shared/_PupopMinistryLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var flag = '@(Model.ActionType)';
+
+        if (flag == "CREATE")
+        {
+            opener.location.reload();
+            window.close();
+        }
+    });
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="width: 25rem;">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinisterName, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinisterName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinisterName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="javascript: window.close();" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ET.Programs>
+
+@{
+    ViewBag.Title = "Programa Semanal";
+    Layout = "~/Views/Shared/_MusicLayout.cshtml";
+}
+
+<script type="text/javascript">
+    function Create() {
+        var url = '@Url.Action("Create", "Programs")';
+        window.open(url, '_blank' , 'left=100,top=100,width=750,height=650,toolbar=1,resizable=0');
+    }
+</script>
+
+<style>
+    .grid-container {
+        display: grid;
+    }
+
+    .grid-container--fill {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .grid-container--fit {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .grid-element {
+        /*background-color: deepPink;*/
+        padding: 20px;
+        color: #fff;
+        border: 1px solid #fff;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <div>
+        @if (ViewBag.WriteFlag == true)
+        {
+            <a id="BtnNew" class="button small" href="#" onclick="Create();">Agregar Programa</a>
+        }
+        else
+        { }
+    </div>
+    <div class="grid-container grid-container--fit">
+        @foreach (var item in Model)
+        {
+            Html.RenderAction("_Details", new { id = item.ProgramID });
+        }
+    </div>
+</div>
+
+

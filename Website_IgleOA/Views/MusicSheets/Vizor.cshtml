@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Vizor";
+    Layout = "~/Views/Shared/_PupopMusicLayout.cshtml";
+}
+
+<h2>@ViewBag.Label</h2>
+
+<iframe src="@Url.Action("GetPDF", new {id = ViewBag.ID})" style="width: 100%;height: 500px;"></iframe>

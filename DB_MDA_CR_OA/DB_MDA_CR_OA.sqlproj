@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DB_MDA_CR_OA</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{fd577a2b-6135-4524-925f-e1e57f1c410d}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DB_MDA_CR_OA</RootNamespace>
+    <AssemblyName>DB_MDA_CR_OA</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="Tables" />
+    <Folder Include="bin" />
+    <Folder Include="bin\Debug" />
+    <Folder Include="obj" />
+    <Folder Include="obj\Debug" />
+    <Folder Include="Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\Schemas\adm.sql" />
+    <Build Include="Security\Schemas\music.sql" />
+    <Build Include="Security\Schemas\ministry.sql" />
+    <Build Include="Security\Schemas\scenic.sql" />
+    <Build Include="Tables\utbLogActivities.sql" />
+    <Build Include="Tables\utbAppDirectory.sql" />
+    <Build Include="Tables\utbRoles.sql" />
+    <Build Include="Tables\utbUsers.sql" />
+    <Build Include="Tables\utbRolesbyUser.sql" />
+    <Build Include="Stored Procedures\uspLogin.sql" />
+    <Build Include="Stored Procedures\uspReadMainPage.sql" />
+    <Build Include="Stored Procedures\uspCheckAvailabilityEmail.sql" />
+    <Build Include="Stored Procedures\uspCheckAvailabilityUserName.sql" />
+    <Build Include="Stored Procedures\uspAddUser.sql" />
+    <Build Include="Stored Procedures\uspReadAdministrators.sql" />
+    <Build Include="Stored Procedures\uspGenerateGUIDResetPassword.sql" />
+    <Build Include="Tables\utbResetPasswords.sql" />
+    <Build Include="Stored Procedures\uspValidateGUIDResetPassword.sql" />
+    <Build Include="Stored Procedures\uspResetPassword.sql" />
+    <Build Include="Tables\utbWebDirectory.sql" />
+    <Build Include="Tables\utbWebDirectorybyRole.sql" />
+    <Build Include="Stored Procedures\uspReadWebDirectorybyUser.sql" />
+    <Build Include="Stored Procedures\uspReadLabelMainMenu.sql" />
+    <Build Include="Stored Procedures\uspReadRoles.sql" />
+    <Build Include="Stored Procedures\uspCreateRole.sql" />
+    <Build Include="Stored Procedures\uspSearchRole.sql" />
+    <Build Include="Stored Procedures\uspUpdateRole.sql" />
+    <Build Include="Stored Procedures\uspReadWebDirectorybyRole.sql" />
+    <Build Include="Stored Procedures\uspUpdateWebDirectorybyRole.sql" />
+    <Build Include="Stored Procedures\uspInsertWebDirectorybyRole.sql" />
+    <Build Include="Tables\utbControllerDirectory.sql" />
+    <Build Include="Tables\utbControllerRights.sql" />
+    <Build Include="Stored Procedures\uspReadControllerRights.sql" />
+    <Build Include="Stored Procedures\uspSearchControllerValidation.sql" />
+    <Build Include="Stored Procedures\uspInsertControllerRights.sql" />
+    <Build Include="Stored Procedures\uspUpdateControllerRights.sql" />
+    <Build Include="Stored Procedures\uspReadUsers.sql" />
+    <Build Include="Stored Procedures\uspSearchUser.sql" />
+    <Build Include="Stored Procedures\uspUpdateUser.sql" />
+    <Build Include="Tables\utbAuthors.sql" />
+    <Build Include="Tables\utbInstruments.sql" />
+    <Build Include="Tables\utbMSFavoritesbyUser.sql" />
+    <Build Include="Tables\utbMusicSheets.sql" />
+    <Build Include="Tables\utbMusicSheetTypes.sql" />
+    <Build Include="Tables\utbPrograms.sql" />
+    <Build Include="Tables\utbSongs.sql" />
+    <Build Include="Tables\utbSongsbyProgram.sql" />
+    <Build Include="Stored Procedures\uspAddAuthor.sql" />
+    <Build Include="Stored Procedures\uspAddMusicSheet.sql" />
+    <Build Include="Stored Procedures\uspAddProgram.sql" />
+    <Build Include="Stored Procedures\uspAddSong.sql" />
+    <Build Include="Stored Procedures\uspAddSongbyProgram.sql" />
+    <Build Include="Stored Procedures\uspAutoCompletePrograms.sql" />
+    <Build Include="Stored Procedures\uspReadAuthors.sql" />
+    <Build Include="Stored Procedures\uspReadInstruments.sql" />
+    <Build Include="Stored Procedures\uspReadMSTypes.sql" />
+    <Build Include="Stored Procedures\uspReadMusicSheets.sql" />
+    <Build Include="Stored Procedures\uspReadMusicSheetsbySong.sql" />
+    <Build Include="Stored Procedures\uspReadNextRehearsal.sql" />
+    <Build Include="Stored Procedures\uspReadPrograms.sql" />
+    <Build Include="Stored Procedures\uspReadSongs.sql" />
+    <Build Include="Stored Procedures\uspReadTop10Songs.sql" />
+    <Build Include="Stored Procedures\uspReadWeeklyProgram.sql" />
+    <Build Include="Stored Procedures\uspSearchAuthor.sql" />
+    <Build Include="Stored Procedures\uspSearchInstrument.sql" />
+    <Build Include="Stored Procedures\uspSearchMSTypes.sql" />
+    <Build Include="Stored Procedures\uspSearchMusicSheet.sql" />
+    <Build Include="Stored Procedures\uspSearchProgramDetails.sql" />
+    <Build Include="Stored Procedures\uspSearchSong.sql" />
+    <Build Include="Stored Procedures\uspSongsbyAuthor.sql" />
+    <Build Include="Stored Procedures\uspUpdateAuthor.sql" />
+    <Build Include="Stored Procedures\uspUpdateMSFavorite.sql" />
+    <Build Include="Stored Procedures\uspUpdateMusicSheet.sql" />
+    <Build Include="Stored Procedures\uspUpdateSongbyProgram.sql" />
+    <Build Include="Stored Procedures\uspCopyProgram.sql" />
+    <Build Include="Stored Procedures\uspReadAvailableCopyPrograms.sql" />
+    <Build Include="Stored Procedures\uspInsertNotificationDate.sql" />
+    <Build Include="Tables\utbEvents.sql" />
+    <Build Include="Tables\utbEventTypes.sql" />
+    <Build Include="Stored Procedures\uspReadEventTypes.sql" />
+    <Build Include="Stored Procedures\uspSearchEventType.sql" />
+    <Build Include="Stored Procedures\uspReadEvents.sql" />
+    <Build Include="Tables\utbMinisters.sql" />
+    <Build Include="Tables\utbPreaches.sql" />
+    <Build Include="Stored Procedures\uspReadMinisters.sql" />
+    <Build Include="Stored Procedures\uspAddMinister.sql" />
+    <Build Include="Stored Procedures\uspAddPreach.sql" />
+    <Build Include="Stored Procedures\uspReadPreaches.sql" />
+    <Build Include="Stored Procedures\uspSearchPreach.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AZURE_DB_MDA_CR_OA.publish.xml" />
+    <None Include="bin\Debug\DB_MDA_CR_OA.dacpac" />
+    <None Include="bin\Debug\DB_MDA_CR_OA.dll" />
+    <None Include="bin\Debug\DB_MDA_CR_OA.pdb" />
+    <None Include="obj\Debug\DB_MDA_CR_OA.dll" />
+    <None Include="obj\Debug\DB_MDA_CR_OA.pdb" />
+    <None Include="obj\Debug\DB_MDA_CR_OA.sqlproj.FileListAbsolute.txt" />
+    <None Include="obj\Debug\Model.xml" />
+    <None Include="DB_MDA_CR_OA.sqlproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DB_MDA_CR_OA.refactorlog" />
+  </ItemGroup>
+</Project>

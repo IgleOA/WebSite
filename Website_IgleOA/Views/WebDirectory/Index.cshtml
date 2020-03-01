@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ET.WebDirectory>
+@{
+    ViewBag.Title = "Perfil del Rol";
+    Layout = ViewBag.Layout;
+}
+
+<h2>@ViewBag.Title - @ViewBag.RoleName</h2>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MainClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WebName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MainClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WebName)
+                </td>
+
+                <td>
+                    @{var isActive = (item.Status ? "Habilitado" : "Deshabilitado");}
+                    @Html.DisplayFor(modelItem => isActive)
+                </td>
+                <td>
+                    <form method="post" action='@Url.Action("ActiveFlag",new { id = item.ProfileID, RoleID = ViewBag.RoleID, WebID = item.WebID })'>
+                        <input id="ChangeStatus" type="submit" value="Cambiar de Status" class="button small alt" />
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Regresar a la lista...", "Index", new { controller = "Roles", id = ViewBag.AppID }, new { @class = "button small" })
+</p>

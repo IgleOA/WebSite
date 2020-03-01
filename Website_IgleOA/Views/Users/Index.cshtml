@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ET.Users>
+
+@using GridMvc.Html;
+
+@{
+    ViewBag.Title = "Indice de Usuarios";
+    Layout = ViewBag.Layout;
+}
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript">
+    function Authorize(id,appid) {
+        var url = '@Url.Action("Authorize", "Users", new { userid = "UserID" ,AppID = "appID" })';
+        url = url.replace("UserID", id);
+        url = url.replace("appID", appid);
+        url = url.replace("amp;", "");        
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+    }
+</script>
+
+<div>
+    <h2>@ViewBag.Title</h2>
+    @if (ViewBag.WriteFlag == true)
+    {
+        <hr />
+        
+        @Html.ActionLink("Crear nuevo usuario", "Create", new { id = ViewBag.AppID }, new { @class = "button small", @style = "margin-top: 0;" })
+
+    }
+    else
+    { }
+
+        <div class="table-responsive">
+            <div class="code-cut" style="width: 100%; font-size: 15px;">
+                @if (ViewBag.AppID == 1)
+                {
+                    @Html.Grid(Model).Columns(Columns =>
+                       {
+                           Columns.Add(c => c.FullName).Titled("Nombre").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                   .Encoded(false)
+                                   .Sanitized(false)
+                                   .RenderValueAs(c => Html.ActionLink("Editar", "Edit", new { id = c.UserID, AppID = ViewBag.AppID }));
+                           }
+                           else { }
+                           Columns.Add(c => c.UserName).Titled("Usuario").Filterable(true);
+                           Columns.Add(c => c.MainArea).Titled("Area Principal").Filterable(true);
+                           Columns.Add(c => c.RolesData.RoleName).Titled("Rol Ministerial").Filterable(true);
+                           Columns.Add(c => c.Email).Titled("Correo").Filterable(true);
+                           Columns.Add().RenderValueAs(c => c.ActiveFlag ? "Activo" : "Inactivo").Titled("Status").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                       .Encoded(false)
+                                       .Sanitized(false)
+                                       .RenderValueAs(c => c.ActiveFlag ? Html.ActionLink("Deshabilitar", "ActiveFlag", new { id = c.UserID, status = c.ActiveFlag, AppID = ViewBag.AppID }) : Html.ActionLink("Habilitar", "ActiveFlag", new { id = c.UserID, status = c.ActiveFlag, AppID = ViewBag.AppID }));
+                           }
+                           else
+                           { }
+                           Columns.Add().RenderValueAs(c => c.AuthorizationFlag ? "Autorizado" : "No Autorizado").Titled("Autorización").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                   .Encoded(false)
+                                   .Sanitized(false)
+                                   .RenderValueAs(c => c.AuthorizationFlag ? new HtmlString("<p></p>") : new HtmlString("<a id='AuthLink' href='#' onclick='Authorize(" + c.UserID  + ","  + c.MainAreaID + ");'>Autorizar</a>"));
+                           }
+                           else
+                           { }
+                       }).WithPaging(10).Sortable(true)
+                }
+                else
+                {
+                    @Html.Grid(Model).Columns(Columns =>
+                       {
+                           Columns.Add(c => c.FullName).Titled("Nombre").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                   .Encoded(false)
+                                   .Sanitized(false)
+                                   .RenderValueAs(c => Html.ActionLink("Editar", "Edit", new { id = c.UserID, AppID = ViewBag.AppID }));
+                           }
+                           else { }
+                           Columns.Add(c => c.UserName).Titled("Usuario").Filterable(true);
+                           Columns.Add(c => c.RolesData.RoleName).Titled("Rol").Filterable(true);
+                           Columns.Add(c => c.Email).Titled("Correo").Filterable(true);
+                           Columns.Add().RenderValueAs(c => c.ActiveFlag ? "Activo" : "Inactivo").Titled("Status").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                       .Encoded(false)
+                                       .Sanitized(false)
+                                       .RenderValueAs(c => c.ActiveFlag ? Html.ActionLink("Deshabilitar", "ActiveFlag", new { id = c.UserID, status = c.ActiveFlag, AppID = ViewBag.AppID }) : Html.ActionLink("Habilitar", "ActiveFlag", new { id = c.UserID, status = c.ActiveFlag, AppID = ViewBag.AppID }));
+                           }
+                           else
+                           { }
+                           Columns.Add().RenderValueAs(c => c.AuthorizationFlag ? "Autorizado" : "No Autorizado").Titled("Autorización").Filterable(true);
+                           if (ViewBag.WriteFlag == true)
+                           {
+                               Columns.Add()
+                                   .Encoded(false)
+                                   .Sanitized(false)
+                                   .RenderValueAs(c => c.AuthorizationFlag ? new HtmlString("<p></p>") : new HtmlString("<a id='AuthLink' href='#' onclick='Authorize(" + c.UserID + "," + c.MainAreaID + ");'>Autorizar</a>"));
+                           }
+                           else
+                           { }
+                       }).WithPaging(10).Sortable(true)
+                }
+            </div>
+        </div>
+</div>

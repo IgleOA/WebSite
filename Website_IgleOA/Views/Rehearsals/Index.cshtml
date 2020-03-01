@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ET.Songs>
+
+@using GridMvc.Html;
+
+@{
+    ViewBag.Title = "Próximo Ensayo";
+    Layout = "~/Views/Shared/_MusicLayout.cshtml";
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript">
+    function OpenCharts(id) {
+        var url = '@Url.Action("MusicSheetsbySong", "MusicSheets", new { SongID = "song" })';
+        url = url.replace("song", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=1000,height=650,toolbar=1,resizable=1');
+    }
+</script>
+
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    @if (ViewBag.Count == 0)
+    {
+        <p>Aun no hay una lista definida... pero siga estudiando las mas usadas... He aquí el @Html.ActionLink("Top 10", "Top10", new { controller = "Songs" }).</p>
+    }
+    else
+    {
+        
+        <div class="table-responsive">
+            <div style="width: 90%; font-size: 15px;">
+                @Html.Grid(Model).Columns(Columns =>
+                    {
+                        Columns.Add(c => c.SongName).Titled("Titulo").Filterable(true);
+                        Columns.Add(c => c.AuthorsData.AuthorName).Titled("Autor").Filterable(true);
+                        Columns.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .RenderValueAs(c => new HtmlString("<a id='ChartsLink' href='#' onclick='OpenCharts(" + c.SongID + ");'>Partituras</a>"));
+                    }).WithPaging(10).Sortable(true)
+            </div>
+        </div>
+    }
+</div>
+

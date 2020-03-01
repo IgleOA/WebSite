@@ -1,0 +1,15 @@
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\DAL.dll.config
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\DAL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\DAL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Dapper.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Dropbox.Api.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\ET.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\ET.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Dapper.xml
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Dropbox.Api.xml
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\obj\Debug\DAL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\DAL\obj\Debug\DAL.pdb
