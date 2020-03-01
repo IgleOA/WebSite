@@ -1,0 +1,133 @@
+﻿@model IEnumerable<ET.ProgramDetails>
+
+@using GridMvc.Html;
+
+@{
+    ViewBag.Title = "Detalle del Programa";
+    Layout = "~/Views/Shared/_PupopMusicLayout.cshtml";
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript">
+    function OpenCharts(id) {
+        var url = '@Url.Action("MusicSheetsbySong", "MusicSheets", new { SongID = "song" })';
+        url = url.replace("song", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=1000,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<script type="text/javascript">
+    function AddSong(id) {
+        var url = '@Url.Action("AddSong", "Programs", new { id = "PID" })';
+        url = url.replace("PID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+    }
+</script>
+<script type="text/javascript">
+    function ConfirmDisable(SPID) {
+        var x = confirm("Esta seguro que quiere eliminar esta canción del programa???");
+        if (x) {
+            $.ajax({
+                url: '@Url.Action("Disable")',
+                data: { id: SPID }
+            }).done(function () { alert('Hecho!!!'); location.reload(); });
+        }
+    }
+</script>
+<script type="text/javascript">
+    function CopyProgram(id) {
+        var url = '@Url.Action("CopyProgram", "Programs", new { id = "PID" })';
+        url = url.replace("PID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<script type="text/javascript">
+    function NotificationEmail(PID) {
+        var x = confirm("Esta seguro que quiere notificar que ya esta listo este programa???");
+        if (x) {
+            $.ajax({
+                url: '@Url.Action("NotificationEmail")',
+                data: { id: PID }
+            }).done(function () { alert('Hecho!!!'); location.reload(); });
+        }
+    }
+</script>
+<h2>Programa para el @ViewBag.DayName @ViewBag.PDate a las @ViewBag.PSchedule.</h2>
+
+
+<div>
+    <hr />
+    <div>
+        @if (ViewBag.Status == false)
+        {
+            <p>
+                @if (ViewBag.WriteFlag == true)
+                {
+                    <a id="BtnNew" class="button small" href="#" onclick="AddSong(@ViewBag.PID)">Agregar Canción</a>
+                    <a id="CopyProgram" class="button small alt" href="#" onclick="CopyProgram(@ViewBag.PID)">Copiar de otro Programa</a>
+
+                }
+                else
+                { }
+            </p>
+        }
+        else
+        { }
+    </div>
+    <div style="width: 90%; font-size: 15px;">
+        @Html.Grid(Model).Columns(Columns =>
+        {
+            Columns.Add(c => c.SongsData.SongName).Titled("Canción").Filterable(true);
+            Columns.Add(c => c.AuthorsData.AuthorName).Titled("Autor").Filterable(true);
+            Columns.Add()
+             .Encoded(false)
+             .Sanitized(false)
+             .RenderValueAs(c => new HtmlString("<a id='ChartsLink' href='#' onclick='OpenCharts(" + c.SongID + ");'>Partituras</a>"));
+            if (ViewBag.WriteFlag == true)
+            {
+                Columns.Add()
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(c => c.Status ? new HtmlString("<p></p>") : new HtmlString("<a id='DisableLink' href='#' onclick='ConfirmDisable(" + c.SPID + ");'>Eliminar</a>"));
+            }
+            else
+            { }
+        }).WithPaging(10).Sortable(true)
+    </div>
+    <div>
+        @if (ViewBag.ND == null)
+        { }
+        else
+        {
+            <p>Notificado al grupo el @ViewBag.ND</p>
+        }
+        @if (ViewBag.Status == false)
+        {
+            <p style="margin: 10px 0 10px 0 !important;">
+                @if (ViewBag.WriteFlag == true)
+                {
+                    if (ViewBag.Rows > 0)
+                    {
+                        if (ViewBag.ND == null)
+                        {
+                            <a id="BtnNotification" class="button small" href="#" onclick="NotificationEmail(@ViewBag.PID)">Notificar al grupo</a>
+                        }
+                        else
+                        {
+                            <a id="BtnNotification" href="#" onclick="NotificationEmail(@ViewBag.PID)">Volver a notificar....</a>
+                        }
+                    }
+                }
+                else
+                { }
+                </p>
+        }
+        else
+        { }
+    </div>
+</div>
+
+
+

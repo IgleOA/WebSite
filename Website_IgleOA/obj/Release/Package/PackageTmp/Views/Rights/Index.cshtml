@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ET.ControllerDirectory>
+
+@{
+    ViewBag.Title = "Derechos";
+    Layout = ViewBag.Layout;
+}
+
+<h2>@ViewBag.Title - @ViewBag.RoleName</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div>
+    <hr />
+        <div class="table-responsive">
+            @if (ViewBag.WriteFlag == true)
+            {
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ControllerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ReadFlag)
+                        </th>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WriteFlag)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ControllerName)
+                            </td>
+                            <td>
+                                @{var readstatus = (item.ReadFlag ? "Habilitado" : "Deshabilitado");}
+                                @Html.DisplayFor(modelItem => readstatus)
+                            </td>
+                            <td>
+                                <form method="post" action='@Url.Action("ActiveFlag", new { roleid = ViewBag.RoleID, controllerid = item.ControllerID, rightid = item.CTRRightID, right = "Read" })'>
+                                    <input id="ChangeReadRight" type="submit" value="Activar/Inactivar" class="button small alt" />
+                                </form>
+                            </td>
+                            <td>
+                                @{var writestatus = (item.WriteFlag ? "Habilitado" : "Deshabilitado");}
+                                @Html.DisplayFor(modelItem => writestatus)
+                            </td>
+                            <td>
+                                <form method="post" action='@Url.Action("ActiveFlag", new { roleid = ViewBag.RoleID, controllerid = item.ControllerID, rightid = item.CTRRightID, right = "Write" })'>
+                                    <input id="ChangeWriteRight" type="submit" value="Activar/Inactivar" class="button small alt" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ControllerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ReadFlag)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WriteFlag)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ControllerName)
+                            </td>
+                            <td>
+                                @{var readstatus = (item.ReadFlag ? "Habilitado" : "Deshabilitado");}
+                                @Html.DisplayFor(modelItem => readstatus)
+                            </td>
+                            <td>
+                                @{var writestatus = (item.WriteFlag ? "Habilitado" : "Deshabilitado");}
+                                @Html.DisplayFor(modelItem => writestatus)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+        </div>
+    <p>
+        @Html.ActionLink("Regresar a la lista...", "Index", new { controller = "Roles" , id = ViewBag.AppID }, new { @class = "button small" })
+    </p>
+</div>

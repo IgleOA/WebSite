@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ET.WebDirectory>
+@{
+    Layout = null;
+    var imagePath = "/images/" + ViewBag.ImagePath;
+}
+
+<div>
+    <div class="box">
+        <div class="image fit">
+            <img src=@imagePath alt="" />
+        </div>
+        <div class="content">
+            <header class="align-center">
+                <p>@ViewBag.LabelMenu</p>
+                <h2>@ViewBag.Class</h2>
+            </header>
+            @foreach (var item in Model)
+            {
+                <ul style="margin-bottom: 1rem;">
+                    <li>
+                        @Html.ActionLink(item.WebName, item.ViewPage, new { controller = item.Controller, id = item.Parameter })
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>

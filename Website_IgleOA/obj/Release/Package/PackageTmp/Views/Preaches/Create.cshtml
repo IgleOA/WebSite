@@ -1,0 +1,126 @@
+﻿@model ET.Preaches
+
+@{
+    ViewBag.Title = "Agregar Predica";
+    Layout = "~/Views/Shared/_PupopMinistryLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap-tagsinput.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-tagsinput.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var flag = '@(Model.ActionType)';
+
+        if (flag == "CREATE")
+        {
+            opener.location.reload();
+            window.close();
+        }
+    });
+</script>
+<script type="text/javascript">
+    function Create() {
+        var url = '@Url.Action("Create", "Ministers")';
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+    }
+</script>
+<style>
+    .grid-container {
+        display: grid;
+    }
+
+    .grid-container--fill {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .grid-container--fit {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .grid-element {
+        padding-right: 15px;
+    }
+
+    .addnew {
+        float: right;
+        margin: 10px 0px;
+        line-height: 1.5rem;
+        padding: 0 10px 0 10px;
+        height: 1.5rem;
+        align-items: center;
+    }
+
+    .bootstrap-tagsinput {
+        width: 100% !important;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "Preaches", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="12u$">
+            @Html.LabelFor(model => model.PreachingDate, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PreachingDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PreachingDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.MinisterID, htmlAttributes: new { @class = "control-label col-md-2", @Style = "width:50%; padding: 0;" })
+                <a class="button small addnew" href="#" title="Agregar Ministro" onclick="Create()">+</a>
+            </div>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MinisterID, new SelectList(Model.MinistersList, "MinisterID", "MinisterName"), "Seleccione el Ministro", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinisterID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="12u$">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, 5, 1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.files, "", new { @type = "file", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="12u$">
+            @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control", data_role = "tagsinput", @placeholder = "Agregar pistas", @style = "width: 100%;" } })
+                @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="javascript: window.close();" />
+            </div>
+        </div>
+    </div>
+}
+

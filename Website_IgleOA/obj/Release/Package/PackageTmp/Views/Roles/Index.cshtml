@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ET.Roles>
+
+@{
+  ViewBag.Title = "Indice de roles";
+  Layout = ViewBag.Layout;
+}
+
+<!DOCTYPE html>
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <hr />
+    
+        @Html.ActionLink("Crear nuevo", "Create", new { AppID = ViewBag.AppID }, new { @class = "button small" , @style = "margin-top: 0;"})
+        
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <th>Perfil</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleDescription)
+                    </th>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ActiveFlag)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href='@Url.Action("Index","WebDirectory", new { RoleID = item.RoleID })'>
+                                <img src="~/images/profile.png" style="width: 30px; vertical-align: middle;" />
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleDescription)
+                        </td>
+                        <td>
+                            <a href='@Url.Action("Index","Rights", new { id = item.RoleID })'>Derechos</a>
+                        </td>
+                        <td>
+                            @{var isActive = (item.ActiveFlag ? "Activo" : "Inactivo");}
+                            @Html.DisplayFor(modelItem => isActive)
+                        </td>
+
+                        <td>
+                            <form method="post" action='@Url.Action("ActiveFlag",new { id = item.RoleID })'>
+                                <input id="ChangeStatus" type="submit" value="Activar/Inactivar" class="button small" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+</div>

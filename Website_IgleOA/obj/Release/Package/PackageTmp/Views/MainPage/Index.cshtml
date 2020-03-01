@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ET.MainPage>
+
+@{
+    ViewBag.Title = "Pagina Principal";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+@*<div class="grid-container grid-container--fit">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            @{ var imagePath = "/images/" + item.Slide + ".jpg";}
+            <a href="@Url.Action(item.ViewPage, item.Controller)" title="@item.MainAppName" class="links">
+                <img src=@imagePath class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">@item.MainAppName</h4>
+                    <p class="card-text" style="text-align: center;">@item.Description</p>
+                </div>
+            </a>
+        </div>
+    }
+</div>*@
+
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @foreach (var item in Model)
+        {
+            if (item.PageIndex == 0)
+            {
+                <li data-target="#carouselExampleCaptions" data-slide-to=@item.PageIndex class="active"></li>
+            }
+            else
+            {
+                <li data-target="#carouselExampleCaptions" data-slide-to=@item.PageIndex></li>
+            }
+        }
+    </ol>
+    <div class="carousel-inner">
+        @foreach (var item in Model)
+        {
+            if (item.PageIndex == 0)
+            {
+                <div class="carousel-item active">
+                    <a href="@Url.Action(item.ViewPage, item.Controller)" title="@item.MainAppName" class="links">
+                        @{ var imagePath = "/images/" + item.Slide + ".jpg";}
+                        <img src=@imagePath class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block">
+                            <div class="inner">
+                                <h2 style="color: white; font-size: 7vw;">@item.MainAppName</h2>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="carousel-item">
+                    <a href="@Url.Action(item.ViewPage, item.Controller)" title="@item.MainAppName" class="links">
+                        @{ var imagePath = "/images/" + item.Slide + ".jpg";}
+                        <img src=@imagePath class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block">
+                            <div class="inner">
+                                <h2 style="color: white; font-size: 7vw;">@item.MainAppName</h2>
+                                <p>@item.Description</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

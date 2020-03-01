@@ -1,0 +1,14 @@
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\BL.dll.config
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\BL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\BL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\DAL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\ET.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\Dapper.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\DAL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\DAL.dll.config
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\ET.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Release\Dapper.xml
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Release\BL.csprojAssemblyReference.cache
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Release\BL.csproj.CopyComplete
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Release\BL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Release\BL.pdb

@@ -12,3 +12,17 @@ C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\BL\obj\Debug\BL.c
 C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\BL\obj\Debug\BL.csproj.CopyComplete
 C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\BL\obj\Debug\BL.dll
 C:\Users\JONATHAN\Dropbox\NewApps\MDA_IgleOA\IgleOA\MDA_IgleOA\BL\obj\Debug\BL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\BL.dll.config
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\BL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\BL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\DAL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\ET.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\Dapper.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\DAL.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\DAL.dll.config
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\ET.pdb
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\bin\Debug\Dapper.xml
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Debug\BL.csprojAssemblyReference.cache
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Debug\BL.csproj.CopyComplete
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Debug\BL.dll
+C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\BL\obj\Debug\BL.pdb

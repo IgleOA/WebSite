@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-MMOasisAlajuela-20190325100451.mdf;Initial Catalog=aspnet-MMOasisAlajuela-20190325100451;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\JONATHAN\\Dropbox\\NewApps\\IgleOA\\WebSite_IgleOA\\Website_IgleOA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="DB_MDA_CR_OA_Connection-Web.config Connection String" description="DB_MDA_CR_OA_Connection Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:igleoa.database.windows.net,1433;Initial Catalog=DB_MDA_CR_OA;Persist Security Info=False;User ID=AdminIgleOA;Password=Wxyz1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\JONATHAN\\Dropbox\\NewApps\\IgleOA\\WebSite_IgleOA\\Website_IgleOA\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DB_MDA_CR_OA_Connection']/@connectionString" />
+  </parameter>
+</parameters>

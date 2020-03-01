@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ET.Authors>
+
+@using GridMvc.Html;
+
+@{
+    ViewBag.Title = "Autores";
+    Layout = "~/Views/Shared/_MusicLayout.cshtml";
+}
+
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript">
+    function CreateNew() {
+        var url = '@Url.Action("Create", "Authors")';
+        window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+    }
+</script>
+<script type="text/javascript">
+    function OpenLink(link) {
+        var url = link;
+        window.open(url, '_blank');
+    }
+</script>
+
+<h2>@ViewBag.Title</h2>
+<div>
+    <hr />
+
+    <div>
+        @if (ViewBag.WriteFlag == true)
+        {
+            <a id="BtnNew" class="button small" href="#" onclick="CreateNew();" style= "margin-top: 0;">Agregar nuevo Autor</a>
+        }
+        else
+        { }
+    </div>
+
+        <div class="table-responsive">
+            <div class="code-cut" style="width: 100%; font-size: 15px;">
+                @Html.Grid(Model).Columns(Columns =>
+                   {
+                       Columns.Add(c => c.AuthorName).Titled("Nombre del Autor").Filterable(true);
+                       if (ViewBag.WriteFlag == true)
+                       {
+                           Columns.Add()
+                               .Encoded(false)
+                               .Sanitized(false)
+                               .RenderValueAs(c => Html.ActionLink("Editar", "Edit", new { id = c.AuthorID }));
+                       }
+                       else
+                       { }
+                       Columns.Add()
+                           .Titled("Perfil")
+                           .Encoded(false)
+                           .Sanitized(false)
+                           .RenderValueAs(c => c.ActiveLink ? new HtmlString("<a id='ProfileLink' href='#' onclick='OpenLink(" + c.ProfileLink.ToString() + ");'>Perfil</a>") : new HtmlString("<p>No disponible</p>"));
+                       Columns.Add()
+                           .Encoded(false)
+                           .Sanitized(false)
+                           .RenderValueAs(c => Html.ActionLink("Repertorio Interno", "Details", new { id = c.AuthorID }));
+                   }).WithPaging(10).Sortable(true)
+            </div>
+        </div>
+</div>

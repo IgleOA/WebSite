@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ET.Programs>
+
+@using GridMvc.Html;
+
+@{
+    ViewBag.Title = "Programas";
+    Layout = "~/Views/Shared/_MusicLayout.cshtml";
+}
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+<script type="text/javascript">
+    function OpenSongs(id) {
+        var url = '@Url.Action("Details", "Programs", new { id = "ProgramID" })';
+        url = url.replace("ProgramID", id)
+        window.open(url, '_blank' , 'left=100,top=100,width=1000,height=650,toolbar=1,resizable=1');
+    }
+</script>
+<script type="text/javascript">
+    function Create() {
+        var url = '@Url.Action("Create", "Programs")';
+        window.open(url, '_blank' , 'left=100,top=100,width=750,height=650,toolbar=1,resizable=0');
+    }
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <div>
+        @if (ViewBag.WriteFlag == true)
+        {
+            <a id="BtnNew" class="button small" href="#" onclick="Create();" style="margin-top: 0;">Crear Programa</a>
+        }
+        else
+        { }
+    </div>
+    <div class="table-responsive">
+        <div style="width: 90%; font-size: 15px;">
+            @Html.Grid(Model).Columns(Columns =>
+               {
+                   Columns.Add(c => c.ProgramDate).Format("{0:yyyy/MM/dd}").Titled("Fecha del Programa").Filterable(true);
+                   Columns.Add(c => c.ProgramSchedule).Titled("Horario").Filterable(true);
+                   Columns.Add()
+                    .Titled("Estado")
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(c => c.CompleteFlag ? new HtmlString("<p>Listo</p>") : new HtmlString("<p>En proceso</p>"));
+                   Columns.Add(c => c.NotificationDate).Titled("Fecha de Aviso").Filterable(true);
+                   Columns.Add()
+                    .Encoded(false)
+                    .Sanitized(false)
+                    .RenderValueAs(c => new HtmlString("<a id='ChartsLink' href='#' onclick='OpenSongs(" + c.ProgramID + ");'>Detalles</a>"));
+               }).WithPaging(10).Sortable(true)
+        </div>
+    </div>
+</div>
+

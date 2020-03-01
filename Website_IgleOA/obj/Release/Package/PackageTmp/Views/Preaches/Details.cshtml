@@ -1,0 +1,84 @@
+﻿@model ET.Preaches
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_PupopMinistryLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<style>
+    .grid-container {
+        display: grid;
+    }
+    .grid-container--fill {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    .grid-container--fit {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    .grid-element {
+        padding-right: 15px;
+    }
+    video {
+        width:100% !important;
+    }
+</style>
+
+<div>
+    <h2>Prédica: <span style="color: blue;">@Model.Title</span></h2>
+    <hr />
+    <div class="grid-container grid-container--fit">
+        <div class="grid-element">
+            <div>
+                @Html.LabelFor(model => model.PreachingDate, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                <div style="margin: 0 15px;">
+                    @Html.TextBox("Fecha", Model.PreachingDate.ToString("dd-MMM-yyyy"), new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.MinisterID, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                <div style="margin: 0 15px;">
+                    @Html.EditorFor(model => model.MinisterName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                <div style="margin: 0 15px;">
+                    @Html.TextAreaFor(model => model.Description,5,1, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="grid-element">
+            <div>
+                @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                <div style="margin: 0 15px;">
+                    @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+            <div>
+                @if (Model.FileType == ".MP3")
+                {
+                    @Html.Label("Audio", htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                    <audio controls>
+                        <source src='@Url.Action("GetFile", new { id = Model.PreachID })' type="audio/mp3" />
+                    </audio>
+                    <p style="margin: 0 15px; font-size:smaller;">
+                        Archivo subido el: <span>@Model.SubmittedDate.ToString("dd/MM/yyyy HH:mm tt")</span>
+                    </p>
+                }
+                else
+                {
+                    @Html.Label("Video", htmlAttributes: new { @class = "control-label col-md-2", @style = "max-width: 100%;" })
+                    <video controls style="margin: 0 15px;">
+                        <source src='@Url.Action("GetFile", new { id = Model.PreachID })' type="video/mp4" />
+                    </video>
+                    <p style="margin: 0 15px; font-size:smaller;">
+                        Archivo subido el: <span>@Model.SubmittedDate.ToString("dd/MM/yyyy HH:mm tt")</span>
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

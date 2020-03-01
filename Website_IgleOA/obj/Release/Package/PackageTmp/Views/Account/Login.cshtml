@@ -1,0 +1,58 @@
+﻿@model MDA_IgleOA.Models.LoginModel
+@{
+   ViewBag.Title = "Iniciar Sesión";
+   Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2 style="margin: 0;">@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe, new { @type = "checkbox" })
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Accesar" class="btn small" style="padding: 0 10px 0 10px;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p style="padding-top: 1.5rem;">
+                        @Html.ActionLink("Registrarse como un nuevo usuario", "RegisterStep1") | @Html.ActionLink("Olvido su contraseña?", "ForgotPassword")
+                    </p>
+                </div>
+            }
+        </section>
+        @*<section id="socialLoginForm">
+
+            </section>*@
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

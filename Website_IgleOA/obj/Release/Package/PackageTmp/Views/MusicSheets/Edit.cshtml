@@ -1,0 +1,67 @@
+﻿@model ET.MusicSheets
+
+@{
+    ViewBag.Title = "Editar Partitura";
+    Layout = "~/Views/Shared/_MusicLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MSID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MSTypeID, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MSTypeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MSTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SongID, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SongID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SongID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Version, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Version, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Version, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstrumentID, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InstrumentID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InstrumentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tonality, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tonality, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tonality, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="button small" />
+                <input type="button" value="Cancelar" class="button small" onclick="javascript: history.go(-1);" />
+            </div>
+        </div>
+    </div>
+}

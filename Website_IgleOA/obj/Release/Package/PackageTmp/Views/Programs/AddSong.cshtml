@@ -1,0 +1,119 @@
+﻿@model ET.ProgramDetails
+
+@{
+    ViewBag.Title = "Agreagar Canción";
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="~/assets/css/chosen.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="~/assets/js/chosen.jquery.min.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            var flag = '@(Model.ActionType)';
+
+            if (flag == "CREATE")
+            {
+                opener.location.reload();
+                window.close();
+            }
+        });
+        </script>
+        <script type="text/javascript">
+        function Create() {
+            var url = '@Url.Action("Create", "Songs")';
+            window.open(url, '_blank' , 'left=100,top=100,width=500,height=650,toolbar=1,resizable=0');
+        }
+        </script>
+    </head>
+    <body>
+        <link rel="stylesheet" href="~/assets/css/main.css" />
+        <!-- Two -->
+        <section id="two" class="wrapper style3">
+            <header id="header" class="alt">
+                <div class="logo"><a>MDA - Area Musical <span>Oasis Alajuela</span></a></div>
+                <a id="HeaderFrase">Amamos al Espíritu Santo</a>
+            </header>
+        </section>
+        <!-- Three -->
+        <section id="three" class="wrapper style2" style="padding: 1rem;">
+            <h2>@ViewBag.Title</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ProgramID)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProgramID, htmlAttributes: new { @class = "control-label col-md-2" , @style="max-width: 100%;"})
+                        <div class="col-md-10">
+                            <H3>@ViewBag.DayName @ViewBag.PDate a las @ViewBag.PSchedule</H3>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Canciones")
+                        <div class="col-md-10">
+                            <p style="display: none">
+                                @Html.TextBox("SongsList")
+                            </p>
+                            <form>
+                                @Html.DropDownList("dllSongs", new SelectList((from c in Model.SongsList
+                                                                                    select new
+                                                                                    {
+                                                                                        Value = c.SongID,
+                                                                                        Text = c.SongName + " - " + c.AuthorsData.AuthorName
+                                                                                    }), "Value", "Text"), new { multiple = "multiple" })
+
+                            </form>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('#dllSongs').chosen();
+                                });
+
+                                $('#dllSongs').on('change', function () {
+                                    var recipientid = $(this).val();
+                                    var textBox = $('#SongsList');
+                                    textBox.val(recipientid);
+                                });
+
+                            </script>
+                            <a id="BtnNew" class="button small alt" href="#" onclick="Create();">Agregar Canción</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Agregar" class="btn btn-default" />
+                            <input type="button" value="Cancelar" class="btn btn-default" onclick="javascript: window.close();" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+        <!-- Footer -->
+        <footer id="footer" style="padding:0px">
+            <div class="container">
+                <ul class="icons" style="margin:0px;">
+                    @*<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>*@
+                    <li><a href="https://www.facebook.com/IGLEOA/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    @*<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>*@
+                    <li><a href="@Url.Action("Contact", "MainPage", new { AppID = 2 })" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                    <li><a href="https://api.whatsapp.com/send?phone=50683102429" class="icon fa-whatsapp"><span class="label">WhatsApp</span></a></li>
+                </ul>
+            </div>
+            <div class="copyright" style="margin:0px;">
+                Oasis Alajuela &copy; @DateTime.Now.Year - Ministerio de Artes
+            </div>
+        </footer>
+    </body>
+</html>
