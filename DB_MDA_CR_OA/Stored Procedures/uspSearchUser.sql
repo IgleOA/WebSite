@@ -27,12 +27,13 @@ AS
 						,U.[FullName]
 						,U.[UserName]
 						,U.[Email]
+						,U.[InternalUser]
 						,RU.[RoleID]
 						,U.[ActiveFlag]
 						,U.[AuthorizationFlag]  
 				FROM	[adm].[utbUsers] U
 						LEFT JOIN [adm].[utbRolesbyUser] RU ON RU.[UserID] = U.[UserID] AND RU.[ActiveFlag] = 1
-						INNER JOIN [adm].[utbRoles] R ON RU.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID 
+						LEFT JOIN [adm].[utbRoles] R ON RU.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID 
 				WHERE	U.[UserID] = @UserID
 			-- =======================================================
 

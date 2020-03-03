@@ -22,7 +22,7 @@ namespace Website_IgleOA.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterStep1Model
+    public class RegisterModel
     {
         [Required]
         [Display(Name = "Nombre Completo")]
@@ -36,27 +36,6 @@ namespace Website_IgleOA.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-    }
-
-    public class RegisterStep2Model
-    {
-        [Required]
-        [Display(Name = "Nombre Completo")]
-        public string FullName { get; set; }
-
-        [Required]
-        [Display(Name = "Usuario")]
-        public string UserName { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Principal Area de Interes")]
-        public int ApplicationID { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} caracteres.", MinimumLength = 6)]
@@ -68,18 +47,9 @@ namespace Website_IgleOA.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y su confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
-
-        public List<MainPage> Applications { get; set; }
-
-        public MainPage AppData { get; set; }
-
-        public RegisterStep2Model()
-        {
-            AppData = new MainPage();
-        }
-       
     }
 
+    
     public class ResetPasswordModel
     {
         [Required]

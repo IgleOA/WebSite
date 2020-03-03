@@ -58,7 +58,7 @@ namespace Website_IgleOA.Controllers
                 }
 
                 ViewBag.UserName = model.UserName;
-                return RedirectToAction("Index", "MainPage");
+                return RedirectToAction("Home", "Home");
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Website_IgleOA.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult RegisterStep1()
+        public ActionResult Register()
         {
             return View();
         }
@@ -92,14 +92,47 @@ namespace Website_IgleOA.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult RegisterStep1(RegisterStep1Model modelstep1)
+        public ActionResult Register(RegisterModel model)
         {
-            var ValidationUserName = UserBL.CheckUserNameAvailability(modelstep1.UserName);
-            var ValidationEmail = UserBL.CheckEmailAvailability(modelstep1.Email);
+            var ValidationUserName = UserBL.CheckUserNameAvailability(model.UserName);
+            var ValidationEmail = UserBL.CheckEmailAvailability(model.Email);
 
             if (ValidationUserName.Count == 0 && ValidationEmail.Count == 0)
             {
-                return RedirectToAction("RegisterStep2", "Account", new { fullname = modelstep1.FullName, username = modelstep1.UserName, email = modelstep1.Email });
+                Users user = new Users();
+
+                user.FullName = model.FullName;
+                user.UserName = model.UserName;
+                user.Email = model.Email;
+                user.Password = model.Password;
+                user.RoleID = null;
+
+                var r = UserBL.AddNewUser(user, model.UserName);
+
+                if (!r)
+                {
+                    ViewBag.Mensaje = "Ha ocurrido un error inesperado";
+                    return View("~/Views/Shared/Error.cshtml");
+                }
+                else
+                {
+                    Emails Email = new Emails();
+
+                    Email.FromEmail = "johmstone@gmail.com";
+                    Email.ToEmail = model.Email;
+                    Email.SubjectEmail = "Oasis Alajuela - Registro satisfactorio";
+                    Email.BodyEmail = "Gracias " + model.FullName + " por registrarse, tenemos muchas cosas y grandes de camino. Gracias por ser parte de nuestra Familia. Bendiciones...";
+
+                    MailMessage mm = new MailMessage(Email.FromEmail, Email.ToEmail);
+                    mm.Subject = Email.SubjectEmail;
+                    mm.Body = Email.BodyEmail;
+                    mm.IsBodyHtml = false;
+
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Send(mm);
+
+                    return this.RedirectToAction("RegisterConfirmation", "Account", new { FullName = model.FullName });
+                }
             }
             else
             {
@@ -120,104 +153,10 @@ namespace Website_IgleOA.Controllers
                 }
             }
 
-            return View(modelstep1);
-        }
-
-        [AllowAnonymous]
-        public ActionResult RegisterStep2(string fullname, string username, string email)
-        {
-            RegisterStep2Model NewModel = new RegisterStep2Model();
-            NewModel.FullName = fullname;
-            NewModel.UserName = username;
-            NewModel.Email = email;
-
-            NewModel.Applications = MPBL.MainPage().ToList();
-
-            return View(NewModel);
-        }
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult RegisterStep2(RegisterStep2Model model)
-        {
-            if (ModelState.IsValid)
-            {
-                Users user = new Users();
-
-                user.FullName = model.FullName;
-                user.UserName = model.UserName;
-                user.Email = model.Email;
-                user.Password = model.Password;
-                user.RoleID = null;
-                
-                var r = UserBL.AddNewUser(user,model.ApplicationID, model.UserName);
-
-                if (!r)
-                {
-                    ViewBag.Mensaje = "Ha ocurrido un error inesperado";
-                    return View("~/Views/Shared/Error.cshtml");
-                }
-                else
-                {
-                    Emails Email = new Emails();
-
-                    Email.FromEmail = "johmstone@gmail.com";
-                    Email.ToEmail = model.Email;
-                    Email.SubjectEmail = "Ministerio de Artes - Oasis Alajuela - Registro satisfactorio";
-                    Email.BodyEmail = "Gracias " + model.FullName + " por registrarse, su cuenta aun esta pendiente de autorizar, pero será autorizada en las próximas 24 horas. Bendiciones...";
-
-                    MailMessage mm = new MailMessage(Email.FromEmail, Email.ToEmail);
-                    mm.Subject = Email.SubjectEmail;
-                    mm.Body = Email.BodyEmail;
-                    mm.IsBodyHtml = false;
-
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Send(mm);
-
-                    var admins = from a in UserBL.AdminList(model.ApplicationID)
-                                 select a;
-
-                    foreach (var rr in admins)
-                    {
-                        Emails Emailadmin = new Emails();
-
-                        Emailadmin.FromEmail = "johmstone@gmail.com";
-                        Emailadmin.ToEmail = rr.Email;
-                        Emailadmin.SubjectEmail = "Ministerio de Artes - Oasis Alajuela - Solicitud de autorización";
-                        //Emailadmin.BodyEmail = "Buenas " + rr.FullName + "... Se acaba de registrar " + model.FullName + " y esta pendiente de autorizar, por favor autorizar lo antes posible. http://mmoa.azurewebsites.net Bendiciones...";
-
-                        StringBuilder mailBody = new StringBuilder();
-
-                        mailBody.AppendFormat("<h1>Ministerio de Artes - Oasis Alajuela</h1>");
-                        mailBody.AppendFormat("<br />");
-                        mailBody.AppendFormat("Buenas {0}...", rr.FullName);
-                        mailBody.AppendFormat("<h3>Mensaje:</h3>");
-                        mailBody.AppendFormat("<p>Se acaba de registrar {0} y esta pendiente de autorizar, por favor autorizarlo lo antes posible.</p>", model.FullName);
-                                                mailBody.AppendFormat("<p>http://mdaigleoa.azurewebsites.net</p>");
-                        mailBody.AppendFormat("<br />");
-                        mailBody.AppendFormat("<h3>Bendiciones....</h3>");
-
-                        Emailadmin.BodyEmail = mailBody.ToString();
-
-                        MailMessage mmm = new MailMessage(Emailadmin.FromEmail, Emailadmin.ToEmail);
-                        mmm.Subject = Emailadmin.SubjectEmail;
-                        mmm.Body = Emailadmin.BodyEmail;
-                        mmm.IsBodyHtml = true;
-
-                        SmtpClient smtp2 = new SmtpClient();
-                        smtp2.Send(mmm);
-                    }
-
-                    return this.RedirectToAction("RegisterConfirmation", "Account", new { FullName = model.FullName });
-                }
-            }
-
             return View(model);
         }
 
-        //
+                //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public ActionResult RegisterConfirmation(string FullName)
@@ -334,7 +273,7 @@ namespace Website_IgleOA.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Home", "Home");
         }
     }
 }

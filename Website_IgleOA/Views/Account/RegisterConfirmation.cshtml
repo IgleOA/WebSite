@@ -3,26 +3,32 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<hgroup class="title">
-    <h2>@ViewBag.Title</h2>
-</hgroup>
-<hr />
-<div>
-    <p>
-        Gracias @ViewBag.FullName por registrarse...
-    </p>
+<link href="~/assets/css/Login.css" rel="stylesheet" />
+<link href="~/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="d-flex justify-content-center h-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3>@ViewBag.Title</h3>
+            </div>
+            <div class="card-body">
+                <div>
+                    <p>
+                        Tu registro fue exitoso. 
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Gracias @ViewBag.FullName por formar parte de este ejercito de Cristo...
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Bendiciones...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <p>
-        Su cuenta aun esta pendiente de autorizar, pero será autorizada en las próximas 24 horas.
-    </p>
-</div>
-<div>
-    <p>
-        Bendiciones...
-    </p>
-</div>
-
-
-
-

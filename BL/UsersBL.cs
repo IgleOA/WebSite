@@ -27,11 +27,6 @@ namespace BL
             return UDAL.CheckEmailAvailability(Email);
         }
 
-        public bool AddNewUser(Users user, int applicationid, string insertuser)
-        {
-            return UDAL.AddNewUser(user, applicationid ,insertuser);
-        }
-
         public List<Users> AdminList(int appid)
         {
             return UDAL.AdminList(appid);
@@ -57,9 +52,9 @@ namespace BL
             return UDAL.List(AppID);
         }
 
-        public bool AddNewUser(Users user, string insertuser, int appid)
+        public bool AddNewUser(Users user, string insertuser)
         {
-            return UDAL.AddNewUser(user, insertuser, appid);
+            return UDAL.AddNewUser(user, insertuser);
         }
 
         public Users Details(int id, int appid)

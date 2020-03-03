@@ -119,7 +119,7 @@ namespace Website_IgleOA.Controllers
 
                 string InsertUser = User.Identity.GetUserName();
 
-                var r = UBL.AddNewUser(NewUser, InsertUser, rol.ApplicationID);
+                var r = UBL.AddNewUser(NewUser, InsertUser);
 
                 if (!r)
                 {

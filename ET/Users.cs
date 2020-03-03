@@ -32,6 +32,9 @@ namespace ET
         [Display(Name = "Status")]
         public bool ActiveFlag { get; set; }
 
+        [Display(Name = "Usuario Interno")]
+        public bool InternalUser { get; set; }
+
         [Required]
         [Display(Name = "Usuario Autorizado")]
         public bool AuthorizationFlag { get; set; }
@@ -39,7 +42,7 @@ namespace ET
         [Display(Name = "Rol")]
         public int? RoleID { get; set; }
 
-        public int MainAreaID { get; set; }
+        public int? MainAreaID { get; set; }
 
         [Display(Name = "Area Principal")]
         public string MainArea { get; set; }

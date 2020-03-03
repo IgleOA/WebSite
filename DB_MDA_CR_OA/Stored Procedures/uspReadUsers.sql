@@ -11,7 +11,7 @@
 -- ======================================================================
 
 CREATE PROCEDURE [adm].[uspReadUsers]
-	@AppID INT
+	@AppID INT = NULL
 AS 
     BEGIN
         SET NOCOUNT ON
@@ -21,51 +21,77 @@ AS
             DECLARE @lErrorState INT
 
             -- =======================================================
-				IF(@AppID = 1) /*Ministry Area*/
+				IF(@AppID IS NULL)
 					BEGIN
-						DECLARE	@RoleID INT
-
-						SELECT	@RoleID = [RoleID]
-						FROM	[adm].[utbRoles]
-						WHERE	[ApplicationID] = 1
-								AND [RoleName] = 'Usuario'
-
 						SELECT	U.[UserID]
 								,U.[FullName]
 								,U.[UserName]
 								,U.[Email]
+								,U.[InternalUser]
 								,U.[ActiveFlag]
 								,U.[AuthorizationFlag]
-								,[RoleID]		=	ISNULL(MR.[RoleID],@RoleID)
-								,[MainAreaID]	=	AD.[ApplicationID]
-								,[MainArea]		=	AD.[MainAppName]
+								,[RoleID]		=	MR.[RoleID]
+								,[MainAreaID]	=	MR.[ApplicationID]
+								,[MainArea]		=	MR.[MainAppName]
 						FROM	[adm].[utbUsers] U
-								OUTER APPLY (SELECT RU.[RoleID], R.[RoleName], R.[ApplicationID]
+								OUTER APPLY (SELECT TOP 1 RU.[RoleID], R.[RoleName], R.[ApplicationID], AD.[MainAppName]
 											 FROM	[adm].[utbRolesbyUser] RU
-													INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID
-											 WHERE	RU.[UserID] = U.[UserID]) MR
-								OUTER APPLY (SELECT TOP 1 RU.[RoleID], R.[RoleName], R.[ApplicationID]
-											 FROM	[adm].[utbRolesbyUser] RU
-													INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] != @AppID
+													INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ActiveFlag] = 1							
+													INNER JOIN [adm].[utbAppDirectory] AD ON AD.[ApplicationID] = R.[ApplicationID] AND AD.[ActiveFlag] = 1
 											 WHERE	RU.[UserID] = U.[UserID]
-											 ORDER BY RU.[CreationDate]) OTR
-								LEFT JOIN [adm].[utbAppDirectory] AD ON AD.[ApplicationID] = ISNULL(OTR.[ApplicationID],@AppID)
+													AND RU.[ActiveFlag] = 1
+											 ORDER BY R.[ApplicationID],R.[RoleID]) MR
 					END
 				ELSE
 					BEGIN
-						SELECT	U.[UserID]
-								,U.[FullName]
-								,U.[UserName]
-								,U.[Email]
-								,U.[ActiveFlag]
-								,U.[AuthorizationFlag]
-								,RU.RoleID
-								,[MainAreaID]	=	AD.[ApplicationID]
-								,[MainArea]		=	AD.[MainAppName]
-						FROM	[adm].[utbUsers] U
-								INNER JOIN [adm].[utbRolesbyUser] RU ON RU.[UserID] = U.[UserID]
-								INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID
-								LEFT JOIN [adm].[utbAppDirectory] AD ON AD.[ApplicationID] = @AppID
+						IF(@AppID = 1) /*Ministry Area*/
+							BEGIN
+								DECLARE	@RoleID INT
+
+								SELECT	@RoleID = [RoleID]
+								FROM	[adm].[utbRoles]
+								WHERE	[ApplicationID] = 1
+										AND [RoleName] = 'Usuario'
+
+								SELECT	U.[UserID]
+										,U.[FullName]
+										,U.[UserName]
+										,U.[Email]
+										,U.[InternalUser]
+										,U.[ActiveFlag]
+										,U.[AuthorizationFlag]
+										,[RoleID]		=	ISNULL(MR.[RoleID],@RoleID)
+										,[MainAreaID]	=	AD.[ApplicationID]
+										,[MainArea]		=	AD.[MainAppName]
+								FROM	[adm].[utbUsers] U
+										OUTER APPLY (SELECT RU.[RoleID], R.[RoleName], R.[ApplicationID]
+													 FROM	[adm].[utbRolesbyUser] RU
+															INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID
+													 WHERE	RU.[UserID] = U.[UserID]) MR
+										OUTER APPLY (SELECT TOP 1 RU.[RoleID], R.[RoleName], R.[ApplicationID]
+													 FROM	[adm].[utbRolesbyUser] RU
+															INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] != @AppID
+													 WHERE	RU.[UserID] = U.[UserID]
+													 ORDER BY RU.[CreationDate]) OTR
+										LEFT JOIN [adm].[utbAppDirectory] AD ON AD.[ApplicationID] = ISNULL(OTR.[ApplicationID],@AppID)
+							END
+						ELSE
+							BEGIN
+								SELECT	U.[UserID]
+										,U.[FullName]
+										,U.[UserName]
+										,U.[Email]
+										,U.[InternalUser]
+										,U.[ActiveFlag]
+										,U.[AuthorizationFlag]
+										,RU.RoleID
+										,[MainAreaID]	=	AD.[ApplicationID]
+										,[MainArea]		=	AD.[MainAppName]
+								FROM	[adm].[utbUsers] U
+										INNER JOIN [adm].[utbRolesbyUser] RU ON RU.[UserID] = U.[UserID]
+										INNER JOIN [adm].[utbRoles] R ON R.[RoleID] = RU.[RoleID] AND R.[ApplicationID] = @AppID
+										LEFT JOIN [adm].[utbAppDirectory] AD ON AD.[ApplicationID] = @AppID
+							END
 					END
 			-- =======================================================
 

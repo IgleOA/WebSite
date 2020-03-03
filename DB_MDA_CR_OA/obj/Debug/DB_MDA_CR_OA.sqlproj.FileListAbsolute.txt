@@ -23,3 +23,9 @@ C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\p
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\predeploy.sql
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.dll
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.pdb
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.dacpac
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.dll
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\bin\Debug\DB_MDA_CR_OA.pdb
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.sqlprojAssemblyReference.cache
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.dll
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\DB_MDA_CR_OA\obj\Debug\DB_MDA_CR_OA.pdb

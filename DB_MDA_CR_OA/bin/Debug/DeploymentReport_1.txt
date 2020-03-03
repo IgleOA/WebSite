@@ -1,0 +1,63 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [adm].[utbUsers]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Table rebuild
+       [adm].[utbUsers] (Table)
+     Create
+       [adm].[utrLogUsers] (Trigger)
+       [adm].[utbUsers].[InternalUser].[MS_Description] (Extended Property)
+     Alter
+       [adm].[uspAddUser] (Procedure)
+       [adm].[uspSearchUser] (Procedure)
+
+** Supporting actions
+     Drop
+       [adm].[utbUsersDefaultAuthorizationFlagFalse] (Default Constraint)
+       [adm].[utbUsersDefaultActiveFlagTrue] (Default Constraint)
+       [adm].[utbUsersDefaultLastModifyDateSysDateTime] (Default Constraint)
+       [adm].[utbUsersDefaultLastModifyUserSuser_Sname] (Default Constraint)
+       [adm].[utbUsersDefaultCreationUserSuser_sSame] (Default Constraint)
+       [adm].[utbUsersDefaultCreationDateSysDateTime] (Default Constraint)
+       [music].[fk.music.utbMSFavoritesbyUsers.adm.utbUsers.UserID] (Foreign Key)
+       [adm].[fk.adm.utbRolesbyUser.adm.utbUsers.UserID] (Foreign Key)
+       [adm].[fk.adm.utbUsers.adm.utbResetPasswords.UserID] (Foreign Key)
+     Create
+       [music].[fk.music.utbMSFavoritesbyUsers.adm.utbUsers.UserID] (Foreign Key)
+       [adm].[fk.adm.utbRolesbyUser.adm.utbUsers.UserID] (Foreign Key)
+       [adm].[fk.adm.utbUsers.adm.utbResetPasswords.UserID] (Foreign Key)
+       [adm].[utbUsers].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[UserID].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[FullName].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[UserName].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[Email].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[PasswordHash].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[ActiveFlag].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[AuthorizationFlag].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[CreationDate].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[CreationUser].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[LastModifyDate].[MS_Description] (Extended Property)
+       [adm].[utbUsers].[LastModifyUser].[MS_Description] (Extended Property)
+     Refresh
+       [adm].[uspCheckAvailabilityEmail] (Procedure)
+       [adm].[uspCheckAvailabilityUserName] (Procedure)
+       [adm].[uspGenerateGUIDResetPassword] (Procedure)
+       [adm].[uspLogin] (Procedure)
+       [adm].[uspReadAdministrators] (Procedure)
+       [adm].[uspReadLabelMainMenu] (Procedure)
+       [adm].[uspReadUsers] (Procedure)
+       [adm].[uspReadWebDirectorybyUser] (Procedure)
+       [adm].[uspResetPassword] (Procedure)
+       [adm].[uspSearchControllerValidation] (Procedure)
+       [adm].[uspUpdateUser] (Procedure)
+       [music].[uspReadMusicSheets] (Procedure)
+       [music].[uspReadMusicSheetsbySong] (Procedure)
+       [music].[uspSearchMusicSheet] (Procedure)
+       [music].[uspUpdateMSFavorite] (Procedure)

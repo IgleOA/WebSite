@@ -8,3 +8,9 @@ C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\ET\bin\Debug\ET.pdb
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\ET\obj\Debug\ET.csprojAssemblyReference.cache
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\ET\obj\Debug\ET.dll
 C:\Users\JONATHAN\Dropbox\NewApps\IgleOA\WebSite_IgleOA\ET\obj\Debug\ET.pdb
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\bin\Debug\ET.dll
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\bin\Debug\ET.pdb
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\obj\Debug\ET.csprojAssemblyReference.cache
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\obj\Debug\ET.csproj.CoreCompileInputs.cache
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\obj\Debug\ET.dll
+C:\Users\jopiedra\Documents\GitHub\WebSite_IgleOA\ET\obj\Debug\ET.pdb

@@ -198,6 +198,7 @@
     <Content Include="assets\css\chosen-sprite.png" />
     <Content Include="assets\css\chosen.min.css" />
     <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\Login.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\js\chosen.jquery.min.js" />
@@ -226,6 +227,7 @@
     <Content Include="images\EmptyStar.png" />
     <Content Include="images\FullyStar.png" />
     <Content Include="images\logo-OasisAlajuela-Black.png" />
+    <Content Include="images\logo-OasisAlajuela-White.png" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\pic02.jpg" />
     <Content Include="images\pic03.jpg" />
@@ -377,8 +379,7 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_PupopMusicLayout.cshtml" />
     <Content Include="Views\MainPage\Index.cshtml" />
-    <Content Include="Views\Account\RegisterStep1.cshtml" />
-    <Content Include="Views\Account\RegisterStep2.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\RegisterConfirmation.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
@@ -446,6 +447,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Shared\_PupopMainLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

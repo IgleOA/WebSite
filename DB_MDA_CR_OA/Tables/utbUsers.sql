@@ -4,6 +4,7 @@
     [UserName]			VARCHAR (50)  NOT NULL,
 	[Email]				VARCHAR	(50)  NOT NULL,
 	[PasswordHash]		BINARY (64)	  NOT NULL,
+	[InternalUser]		BIT			  CONSTRAINT [utbUsersDefaultInternalUserFalse] DEFAULT ((0)) NOT NULL,
     [ActiveFlag]		BIT           CONSTRAINT [utbUsersDefaultActiveFlagTrue] DEFAULT ((1)) NOT NULL,
 	[AuthorizationFlag]	BIT			  CONSTRAINT [utbUsersDefaultAuthorizationFlagFalse] DEFAULT ((0)) NOT NULL,
     [CreationDate]		DATETIME      CONSTRAINT [utbUsersDefaultCreationDateSysDateTime] DEFAULT (sysdatetime()) NOT NULL,
@@ -20,8 +21,8 @@ FOR INSERT,UPDATE
 AS
 	BEGIN
 		DECLARE @INSERTUPDATE VARCHAR(30)
-		DECLARE @StartValues	XML = (SELECT [UserID],[FullName],[UserName],[Email],[ActiveFlag],[AuthorizationFlag],[CreationDate],[CreationUser],[LastModifyDate],[LastModifyUser] FROM Deleted [Values] for xml AUTO, ELEMENTS XSINIL)
-		DECLARE @EndValues		XML = (SELECT [UserID],[FullName],[UserName],[Email],[ActiveFlag],[AuthorizationFlag],[CreationDate],[CreationUser],[LastModifyDate],[LastModifyUser] FROM Inserted [Values] for xml AUTO, ELEMENTS XSINIL)
+		DECLARE @StartValues	XML = (SELECT [UserID],[FullName],[UserName],[Email],[InternalUser],[ActiveFlag],[AuthorizationFlag],[CreationDate],[CreationUser],[LastModifyDate],[LastModifyUser] FROM Deleted [Values] for xml AUTO, ELEMENTS XSINIL)
+		DECLARE @EndValues		XML = (SELECT [UserID],[FullName],[UserName],[Email],[InternalUser],[ActiveFlag],[AuthorizationFlag],[CreationDate],[CreationUser],[LastModifyDate],[LastModifyUser] FROM Inserted [Values] for xml AUTO, ELEMENTS XSINIL)
 
 		CREATE TABLE #DBCC (EventType varchar(50), Parameters varchar(50), EventInfo nvarchar(max))
 
@@ -66,6 +67,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Email del u
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Password encriptado del usuario.', @level0type = N'SCHEMA', @level0name = N'adm', @level1type = N'TABLE', @level1name = N'utbUsers', @level2type = N'COLUMN', @level2name = N'PasswordHash';
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Esto indica si el usuario es miembro de alguno de los equipos de trabajo en al iglesia.', @level0type = N'SCHEMA', @level0name = N'adm', @level1type = N'TABLE', @level1name = N'utbUsers', @level2type = N'COLUMN', @level2name = N'InternalUser';
 
 
 GO

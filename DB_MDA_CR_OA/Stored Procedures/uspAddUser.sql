@@ -16,7 +16,6 @@ CREATE PROCEDURE [adm].[uspAddUser]
 	@UserName		VARCHAR(50),
 	@Email			VARCHAR(50),
 	@Password		VARCHAR(50),
-	@ApplicationID	INT,
 	@RoleID			INT	= NULL
 AS 
     BEGIN
@@ -45,59 +44,9 @@ AS
 					END
 				ELSE
 					BEGIN
-						INSERT INTO [adm].[utbUsers] ([FullName],[UserName],[Email],[PasswordHash],[AuthorizationFlag],[CreationUser],[LastModifyUser])
-						VALUES (@FullName, @UserName,@Email,HASHBYTES('SHA2_512',@Password),1,@InsertUser,@InsertUser)
+						INSERT INTO [adm].[utbUsers] ([FullName],[UserName],[Email],[PasswordHash],[InternalUser],[AuthorizationFlag],[CreationUser],[LastModifyUser])
+						VALUES (@FullName, @UserName,@Email,HASHBYTES('SHA2_512',@Password),1,1,@InsertUser,@InsertUser)
 					END
-
-				SELECT	@UserID = [UserID]
-				FROM	[adm].[utbUsers]
-				WHERE	[UserName] = @UserName
-						AND [ActiveFlag] = 1
-
-				IF(@RoleID IS NULL)
-					BEGIN
-						IF(@ApplicationID = 1)
-							BEGIN
-								SELECT	@RoleID = [RoleID]
-								FROM	[adm].[utbRoles]
-								WHERE	[ApplicationID] = @ApplicationID
-										AND [RoleName] = 'Nuevo Usuario'
-						
-								INSERT INTO [adm].[utbRolesbyUser] ([UserID],[RoleID],[CreationUser],[LastModifyUser])
-								VALUES (@UserID,@RoleID,@InsertUser,@InsertUser)
-							END
-						ELSE
-							BEGIN
-								INSERT INTO [adm].[utbRolesbyUser] ([UserID],[RoleID],[CreationUser],[LastModifyUser])
-								SELECT	@UserID
-										,[RoleID]
-										,@InsertUser
-										,@InsertUser
-								FROM	[adm].[utbRoles]
-								WHERE	[ApplicationID] IN (1,@ApplicationID)
-										AND [RoleName] = 'Nuevo Usuario'
-							END
-					END
-				ELSE
-					BEGIN
-						IF(@ApplicationID = 1)
-							BEGIN
-								INSERT INTO [adm].[utbRolesbyUser] ([UserID],[RoleID],[CreationUser],[LastModifyUser])
-								VALUES (@UserID,@RoleID,@InsertUser,@InsertUser)
-							END
-						ELSE
-							BEGIN
-								INSERT INTO [adm].[utbRolesbyUser] ([UserID],[RoleID],[CreationUser],[LastModifyUser])
-								SELECT	@UserID
-										,[RoleID]
-										,@InsertUser
-										,@InsertUser
-								FROM	[adm].[utbRoles]
-								WHERE	([RoleID] = @RoleID)
-										OR
-										([RoleName] = 'Usuario' AND [ApplicationID] = 1)
-							END
-					END	
 			-- =======================================================
 
         IF ( @@trancount > 0

@@ -164,7 +164,7 @@ namespace DAL
             return UserList;
         }
 
-        public bool AddNewUser(Users User, int ApplicationID, string InsertUser)
+        public bool AddNewUser(Users User,string InsertUser)
         {
             bool rpta = false;
             try
@@ -229,14 +229,6 @@ namespace DAL
                         Value = User.RoleID
                     };
                     SqlCmd.Parameters.Add(ParRoleID);
-
-                    SqlParameter ParAppID = new SqlParameter
-                    {
-                        ParameterName = "@ApplicationID",
-                        SqlDbType = SqlDbType.Int,
-                        Value = ApplicationID
-                    };
-                    SqlCmd.Parameters.Add(ParAppID);
 
                     //EXEC Command
                     SqlCmd.ExecuteNonQuery();

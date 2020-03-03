@@ -1,7 +1,12 @@
-﻿
+﻿@model Website_IgleOA.Models.LoginModel
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Home</h2>
+<h1>HOME PAGE</h1>
 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

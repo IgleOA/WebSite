@@ -1,0 +1,13 @@
+﻿
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+.card {
+    width: 40%;    
+}
+.card-header, .card-footer {
+    background-color: rgb(180, 180, 180) !important;
+}
+
+.card-footer {
+    color: black;
+}
